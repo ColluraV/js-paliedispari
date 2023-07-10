@@ -3,19 +3,12 @@
 const btnConferma = document.querySelector(".conferma");
 const risultati = document.querySelector("[id=risultato]");
 
-
-
-
-const pari= false;
-const dispari= false;
-
-
 btnConferma.addEventListener("click", function () {
 
-    const pariODispari = document.querySelector("[id=pariDispari]").value;
+    const sceltaUtente = document.querySelector("[id=pariDispari]").value;
     const inputNum = document.querySelector("[id=numeroInput]").value;
     console.log(inputNum);
-    console.log (pariODispari);
+   /* console.log (sceltaUtente);*/
 
 //viene generato un numero random da 1 a 6 (da 1 a 5 dispari ha più piossibilità di vincere)
 
@@ -30,24 +23,38 @@ btnConferma.addEventListener("click", function () {
 
 // verifichiamo se il risultato è pari o dispari
 
-  
+    const finalResult = envenORnot (somma);
+    console.log(finalResult);
 
 //dichiariamo il vinictore
 
+    if ( finalResult === sceltaUtente){
+        console.log ("Hai vinto")
+        risultati .innerHTML = ("E' uscito il numero "+ numRandom + ", la somma è "+ somma + " e HAI PALESEMENTE VINTO" )
 
-})
+    } else { 
+        console.log ("Hai perso")
+        risultati .innerHTML = ("E' uscito il numero "+ numRandom + ", la somma è "+ somma + " e HAI PALESEMENTE PERSO" )
+    }
 
-function envenORnot(val){
+
+
+
+    //funzioni 
+
+    function envenORnot(val){
 
     if(val % 2 == 0 ){
-        envenORnot = pari;
+        envenORnot = "pari";
     } else {
-        envenORnot = dispari;
+        envenORnot = "dispari";
     }
     return envenORnot;
 }
 
-function randomNumber() {
+    function randomNumber() {
     const random = Math.floor(Math.random() * 6) + 1;
     return random;
 }
+
+})
